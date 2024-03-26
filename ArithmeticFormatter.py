@@ -1,4 +1,4 @@
-# Define a function named arithmetic_arranger that takes a list of arithmetic problems and optionally a flag to show answers
+# Define a function named arithmetic_arranger with two parameters problems and show_answer = False as default
 def arithmetic_arranger(problems, show_answer=False):
     # Check if the number of problems is greater than 5, if so, return an error message
     if len(problems) > 5:
@@ -6,10 +6,10 @@ def arithmetic_arranger(problems, show_answer=False):
 
     # Create a dictionary to store different lines of arranged problems
     arranged_problems = {
-        "first_line": "",    # Store the first line of each problem
-        "second_line": "",   # Store the second line of each problem
-        "dash_line": "",     # Store the line containing dashes for formatting
-        "answer_line": ""    # Store the line containing answers (if show_answer is True)
+        "first_line": "",    # Store the first line of each problem for example operand1
+        "second_line": "",   # Store the second line of each problem for example operator(+,-) + operand2
+        "dash_line": "",     # Store the line containing dashes for formatting i.e. -----
+        "answer_line": ""    # Store the line containing answers (if show_answer is True) i.e. result or answer
     }
 
     # Loop through each problem in the list
@@ -32,16 +32,16 @@ def arithmetic_arranger(problems, show_answer=False):
         # Calculate the width needed for formatting based on the length of the operands
         width = max(len(operand1), len(operand2)) + 2
 
-        # Build the first line by right-aligning operand1 and appending it with proper spacing
+        # Build the first line by right-aligning operand1 and appending it with four spacing
         arranged_problems["first_line"] += operand1.rjust(width) + "    "
         
-        # Build the second line by adding the operator, operand2 right-aligned, and proper spacing
+        # Build the second line by adding the operator operand2 right-aligned, and four spacing
         arranged_problems["second_line"] += operator + " " + operand2.rjust(width - 2) + "    "
         
         # Build the dash line by adding dashes to match the width of the operands
         arranged_problems["dash_line"] += "-" * width + "    "
 
-        # If show_answer is True, calculate the answer and build the answer line
+        # If show_answer is True calculate the answer and build the answer line
         if show_answer:
             if operator == "+":
                 answer = str(int(operand1) + int(operand2))
@@ -54,7 +54,7 @@ def arithmetic_arranger(problems, show_answer=False):
     arranged_output += arranged_problems["second_line"].rstrip() + "\n"
     arranged_output += arranged_problems["dash_line"].rstrip()
     
-    # If show_answer is True, append the answer line to the arranged output
+    # If show_answer is True add the answer line to the arranged output
     if show_answer:
         arranged_output += "\n" + arranged_problems["answer_line"].rstrip()
 
